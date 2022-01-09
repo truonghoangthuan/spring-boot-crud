@@ -1,10 +1,13 @@
 package com.example.springbootcrud.controller;
 
+import com.example.springbootcrud.model.Employee;
 import com.example.springbootcrud.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class EmployeeController {
@@ -16,5 +19,18 @@ public class EmployeeController {
     public String index(Model model) {
         model.addAttribute("list_employee", employeeService.getAllEmployee());
         return "index";
+    }
+
+    @GetMapping("/addEmployee")
+    public String addEmployee(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "add_employee";
+    }
+
+    @PostMapping("/saveEmployee")
+    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+        employeeService.saveEmployee(employee);
+        return "redirect:/";
     }
 }

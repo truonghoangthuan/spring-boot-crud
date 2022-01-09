@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -8,9 +8,10 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
 </head>
 <body>
-<div class="container">
+<div class="container mt-3">
     <h1>Employees List</h1>
-    <table class="table">
+    <a class="btn btn-primary mt-3" th:href="@{/addEmployee}">Add Employee</a>
+    <table class="table mt-3">
         <thead class="table-secondary">
         <tr>
             <th scope="col">First Name</th>
