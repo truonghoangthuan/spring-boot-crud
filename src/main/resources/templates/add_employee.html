@@ -15,15 +15,10 @@
             <form method="post" th:action="@{/saveEmployee}" th:object="${employee}">
                 <div class="row g-3">
                     <h1>Add Employee</h1>
-
                     <input class="form-control col-sm" placeholder="First Name" th:field="*{firstName}" type="text">
-
                     <input class="form-control" placeholder="Last Name" th:field="*{lastName}" type="text">
-
                     <input class="form-control" placeholder="Email" th:field="*{email}" type="text">
-
                     <button class="btn btn-primary mb-3" type="submit">Submit</button>
-
                     <a th:href="@{/}">Home</a>
                 </div>
             </form>
