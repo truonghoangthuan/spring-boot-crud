@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class EmployeeController {
 //        List<Employee> listEmployee = employeeService.getAllEmployee();
 //        model.addAttribute("list_employee", listEmployee);
 //        return "index";
-        return findPaginated(1, model);
+        return findPaginated(1, model, "firstName", "asc");
     }
 
     @GetMapping("/addEmployee")
@@ -54,15 +51,22 @@ public class EmployeeController {
     }
 
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,
+                                Model model,
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDirection") String sortDirection) {
         int pageSize = 5;
-        Page<Employee> page = employeeService.findPaginated(pageNo, pageSize);
+        Page<Employee> page = employeeService.findPaginated(pageNo, pageSize, sortField, sortDirection);
         List<Employee> listEmployee = page.getContent();
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPage", page.getTotalPages());
-        model.addAttribute("totalItem", page.getTotalElements());
         model.addAttribute("listEmployee", listEmployee);
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+        model.addAttribute("reverseSort", sortDirection.equals("asc") ? "desc" : "asc");
+
         return "index";
     }
 }
