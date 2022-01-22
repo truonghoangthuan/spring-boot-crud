@@ -21,6 +21,9 @@ public class EmployeeController {
     // Display list of employees
     @GetMapping("/")
     public String index(Model model) {
+//        List<Employee> listEmployee = employeeService.getAllEmployee();
+//        model.addAttribute("list_employee", listEmployee);
+//        return "index";
         return findPaginated(1, model);
     }
 
