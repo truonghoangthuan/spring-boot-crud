@@ -33,7 +33,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="employee : ${listEmployee}">
+        <tr th:each="employee:${listEmployee}">
             <td th:text="${employee.firstName}"></td>
             <td th:text="${employee.lastName}"></td>
             <td th:text="${employee.email}"></td>
@@ -47,7 +47,10 @@
     <ul class="pagination justify-content-center">
         <span>
             <li class="page-item" th:if="${currentPage > 1}">
-                <a class="page-link" th:href="@{'/page/' + ${currentPage - 1}}">Previous</a>
+                <a class="page-link"
+                   th:href="@{'/page/' + ${currentPage - 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}">
+                    Previous
+                </a>
             </li>
             <li class="page-item disabled" th:if="${currentPage == 1}">
                 <a class="page-link" href="#">Previous</a>
@@ -55,18 +58,27 @@
         </span>
 
 
-        <span th:each="i:${#numbers.sequence(1,totalPage)}">
+        <span th:each="i:${#numbers.sequence(1, totalPage)}">
             <li class="page-item" th:if="${currentPage != i}">
-                <a class="page-link" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+                <a class="page-link"
+                   th:href="@{'/page/' + ${i} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}">
+                    [[${i}]]
+                </a>
             </li>
             <li class="page-item active" th:if="${currentPage == i}">
-                <a class="page-link" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+                <a class="page-link"
+                   th:href="@{'/page/' + ${i} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}">
+                    [[${i}]]
+                </a>
             </li>
         </span>
 
         <span>
             <li class="page-item" th:if="${currentPage < totalPage}">
-                <a class="page-link" th:href="@{'/page/' + ${currentPage + 1}}">Next</a>
+                <a class="page-link"
+                   th:href="@{'/page/' + ${currentPage + 1} + '?sortField='+ ${sortField} +'&sortDirection=' + ${sortDirection}}">
+                    Next
+                </a>
             </li>
             <li class="page-item disabled" th:if="${currentPage == totalPage}">
                 <a class="page-link" href="#">Next</a>
