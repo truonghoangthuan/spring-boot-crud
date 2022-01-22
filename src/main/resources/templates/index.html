@@ -14,9 +14,21 @@
     <table class="table mt-3">
         <thead class="table-secondary">
         <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
+            <th scope="col">
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=firstName&sortDirection=' + ${reverseSort}}">
+                    First Name
+                </a>
+            </th>
+            <th scope="col">
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=lastName&sortDirection=' + ${reverseSort}}">
+                    Last Name
+                </a>
+            </th>
+            <th scope="col">
+                <a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDirection=' + ${reverseSort}}">
+                    Email
+                </a>
+            </th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
