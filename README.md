@@ -10,7 +10,7 @@ This project is based on the [Spring Boot](http://projects.spring.io/spring-boot
 - Spring MVC (Tomcat)
 - [Thymleaf](https://thymeleaf.org)
 
-![screenshot](https://github.com/truonghoangthuan/spring-boot-crud/blob/master/screenshots.png)
+![screenshot](https://github.com/truonghoangthuan/spring-boot-crud/blob/master/screenshot.png)
 
 ## Installation
 The project is created with Maven, so you just need to import it to your IDE and build the project to resolve the dependencies
